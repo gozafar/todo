@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import '../App.css';
+import Todo1 from './todo2'
+import TodoList from './TodoList'
+import TodoList1 from './TodoList1'
 
 
 function Todo() {
@@ -7,7 +10,7 @@ function Todo() {
     const [items, setItems] = useState([]);
     const [toggle, setToggle] = useState(true);
     const [editItems, setEditItems] = useState(null);
-    
+
 
 
 
@@ -77,12 +80,20 @@ function Todo() {
                 <div className="child-div">
                     <h3>ADD ITEMS</h3><hr />
                     <div className="add-item">
-                        <input type="text " value={inputData} onChange={inputItem} />
+                        {/* <input type="text " value={inputData} onChange={inputItem} />
 
                         {
                             toggle ? <button title="Add item" onClick={addItem}>Add</button>
                                 : <button title="Add item" onClick={addItem}>Update</button>
-                        }
+                        } */}
+                        <Todo1
+                            inputData={inputData}
+                            inputItem={inputItem}
+                            toggle={toggle}
+                            addItem={addItem}
+                            addItem={addItem}
+
+                        />
 
 
                     </div>
@@ -95,24 +106,36 @@ function Todo() {
                             items.map((elem) => {
                                 if (elem.ischecked === false) {
                                     return (
-                                        <>
-                                            <div className="each-item" key={elem.id} style={{ display: "flex", justifyContent: "space-between" }}>
+                                        // <>
+                                        //     <div className="each-item" key={elem.id} style={{ display: "flex", justifyContent: "space-between" }}>
 
-                                                <ol style={elem.ischecked ? { textDecoration: "line-through" } : null}><input type="checkbox" checked={elem.ischecked} onChange={(e) => handleClick(elem.id)} />{elem.name}</ol>
-                                                
+                                        //         <ol style={elem.ischecked ? { textDecoration: "line-through" } : null}><input type="checkbox" checked={elem.ischecked} onChange={(e) => handleClick(elem.id)} />{elem.name}</ol>
 
-                                                <div className="todo-btn" style={{
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    justifyContent: "space-between"
-                                                }}>
-                                                    <button className="Edit-item" onClick={() => { editItem(elem.id) }}>Edit</button>
 
-                                                    <button className="Delete-item" onClick={() => { deleteItems(elem.id) }}>Delete</button>
-                                                </div>
-                                            </div>
-                                            <hr />
-                                        </>
+                                        //         <div className="todo-btn" style={{
+                                        //             display: "flex",
+                                        //             flexDirection: "column",
+                                        //             justifyContent: "space-between"
+                                        //         }}>
+                                        //             <button className="Edit-item" onClick={() => { editItem(elem.id) }}>Edit</button>
+
+                                        //             <button className="Delete-item" onClick={() => { deleteItems(elem.id) }}>Delete</button>
+                                        //         </div>
+                                        //     </div>
+                                        //     <hr />
+                                        // </>
+                                        <TodoList
+                                        key={elem.id}
+                                        elem={elem}
+                                        ischecked={elem.ischecked}
+                                        handleClick={handleClick}
+                                        editItem={editItem}
+                                        deleteItems={deleteItems}
+                                        
+                                        
+                                        
+                                        
+                                        />
 
 
                                     )
@@ -129,25 +152,34 @@ function Todo() {
                             items.map((elem) => {
                                 if (elem.ischecked === true) {
                                     return (
-                                        <>
-                                            <div className="each-item" key={elem.id} style={{ display: "flex", justifyContent: "space-between" }}>
+                                        // <>
+                                        //     <div className="each-item" key={elem.id} style={{ display: "flex", justifyContent: "space-between" }}>
 
-                                                <ol style={elem.ischecked ? { textDecoration: "line-through" } : null}><input type="checkbox" checked={elem.ischecked} onChange={(e) => handleClick(elem.id)} />{elem.name}</ol>
+                                        //         <ol style={elem.ischecked ? { textDecoration: "line-through" } : null}><input type="checkbox" checked={elem.ischecked} onChange={(e) => handleClick(elem.id)} />{elem.name}</ol>
 
 
-                                                <div className="todo-btn" style={{
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    height:"100%",
-                                                    justifyContent: "space-between"
-                                                }}>
-                                                    <button className="Edit-item" onClick={() => { editItem(elem.id) }}>Edit</button>
+                                        //         <div className="todo-btn" style={{
+                                        //             display: "flex",
+                                        //             flexDirection: "column",
+                                        //             height: "100%",
+                                        //             justifyContent: "space-between"
+                                        //         }}>
+                                        //             <button className="Edit-item" onClick={() => { editItem(elem.id) }}>Edit</button>
 
-                                                    <button className="Delete-item" onClick={() => { deleteItems(elem.id) }}>Delete</button><hr />
-                                                </div>
-                                            </div>
-                                            <hr />
-                                        </>
+                                        //             <button className="Delete-item" onClick={() => { deleteItems(elem.id) }}>Delete</button><hr />
+                                        //         </div>
+                                        //     </div>
+                                        //     <hr />
+                                        // </>
+                                        <TodoList1
+                                        key={elem.id}
+                                        elem={elem}
+                                        ischecked={elem.ischecked}
+                                        handleClick={handleClick}
+                                        editItem={editItem}
+                                        deleteItems={deleteItems}
+                                        
+                                        />
                                     )
                                 } else {
                                     return null
